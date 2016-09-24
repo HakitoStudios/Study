@@ -1,0 +1,41 @@
+<resources>
+    <string name="certain_hint">Catch green circle with blocks. Tap on the screen to allocate new block</string>
+    <string name="extrasense_hint">Green ring is a next step of circle</string>
+    <string name="froze_hint">Circle is frozen and can`t move!</string>
+    <string name="teleport_hint">Select one of points and teleport circle where!</string>
+    <string name="reset">Reset</string>
+    <string name="next">Next</string>
+    <string name="tap_to_play">Tap to play</string>
+    <string name="shop">Shop</string>
+    <string name="steps">%d steps</string>
+    <string name="coins" formatted="false">%d/%d</string>
+    <string name="you_need_more_stars">You need %d more stars to unlock it</string>
+    <string name="extrasense_name">Extrasense</string>
+    <string name="extrasense_desc">Apologise next step</string>
+    <string name="froze_name">Frozing</string>
+    <string name="froze_desc">Froze for one step</string>
+    <string name="teleport_desc">Move to your own position</string>
+    <string name="teleport_name">Teleport</string>
+    <string name="you_need_more_money">You need more money to buy it</string>
+    <string name="coinss">%d</string>
+    <string name="hint_unsufficient_stars">You need more stars to unlock next level</string>
+    <string name="game_passed">Congratulations!\nYou have passed the game!</string>
+    <string name="congrat">Congratulations!</string>
+    <string name="splash_text" translatable="false">Try {catch}</string>
+    <string name="level_failed">Level failed :(</string>
+    <string name="level">Level %d</string>
+    <string name="welcome_to_game">Welcome to the game!</string>
+    <string name="wel_take_tour">Now you\'ll be able to learn how to play it.</string>
+    <string name="use_btns_to_navigate">Use side buttons for navigation.</string>
+    <string name="when_you_got">Press \"OK\" if you mastered everything.</string>
+    <string name="press_next">Click \"Next\" right now to start training.</string>
+    <string name="bonuses">Bonuses</string>
+    <string name="there_are_3_bonuses">There\'re 3 types of bonuses in the game:</string>
+    <string name="available_in_shop">Information about bonuses and their purchase are available in the shop.</string>
+    <string name="tap_to_activate">If you want to activate the bonus you need to tap on it and follow further instructions.</string>
+    <string name="teleport">Teleport</string>
+    <string name="teleport_is_a_bridge">Teleport is an imaginary bridge which can instantly move the circle from one point to another.</string>
+    <string name="extrasense">Extrasense</string>
+    <string name="frozing">Frozing</string>
+
+</resources>

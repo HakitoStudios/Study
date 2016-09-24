@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="100dp">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/text_cost"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:id="@+id/text_name"
+        android:layout_toRightOf="@+id/imageView"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text  hafajd gfasfhghdsgfahj fajsg jadsg  adfshasg jfags jfgshdhgf"
+        android:id="@+id/text_description"
+        android:layout_below="@+id/text_name"
+        android:layout_toRightOf="@+id/imageView"
+        android:nestedScrollingEnabled="true"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toLeftOf="@+id/text_cost"
+        android:layout_marginRight="8dp"
+        tools:ignore="HardcodedText" />
+</RelativeLayout>

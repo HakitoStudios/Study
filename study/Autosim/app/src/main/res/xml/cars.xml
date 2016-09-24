@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cars>
+<car
+    name="Jaguar"
+    path="test_car.png"
+    mass="1500"
+    wk="1"
+    bk="5000"
+    width="5"
+    >
+    <wheel x="0.2" r="0.072"></wheel>
+    <wheel x="0.784" r="0.072"></wheel>
+    <transmisson>
+        <diff value="3.07"/>
+        <gear value="-3.4"/>
+        <gear value="0"/>
+        <gear value="4.17"/>
+        <gear value="2.3"/>
+        <gear value="1.52"/>
+        <gear value="1.14"/>
+        <gear value="0.87"/>
+        <gear value="0.69"/>
+    </transmisson>
+    <engine
+        idle="1500"
+        inertia="0.06"
+        brk="0.0001"
+        maxRPM="5900"
+        >
+        <torque>
+           <!-- <p x="0" y="0" />
+            <p x="500" y="200" />-->
+            <p x="2000" y="400" />
+            <p x="2500" y="600" />
+            <p x="4000" y="600" />
+            <p x="6000" y="300" />
+        </torque>
+    </engine>
+    <exhaust
+        x="0.05"
+        y="0.058"
+        angle="-3.1415"
+        >
+
+    </exhaust>
+</car>
+    <car
+        name="Kamaz"
+        path="kamaz.png"
+        mass="9000"
+        wk="0.5"
+        bk="20000"
+        width="8"
+        >
+        <wheel x="0.25" r="0.074"></wheel>
+        <wheel x="0.4" r="0.074"></wheel>
+        <wheel x="0.828" r="0.074"></wheel>
+        <transmisson>
+            <diff value="5"/>
+            <gear value="-6.4"/>
+            <gear value="0"/>
+            <gear value="9.17"/>
+            <gear value="7.17"/>
+            <gear value="5.5"/>
+            <gear value="4.0"/>
+            <gear value="3.5"/>
+            <gear value="3.0"/>
+            <gear value="2.3"/>
+            <gear value="1.8"/>
+
+        </transmisson>
+        <engine
+            idle="500"
+            inertia="0.06"
+            brk="0.0001"
+            maxRPM="3000"
+            >
+            <torque>
+               <!-- <p x="0" y="0" />
+                <p x="500" y="400" />-->
+                <p x="1000" y="400" />
+                <p x="1500" y="800" />
+                <p x="2000" y="600" />
+                <p x="3000" y="400" />
+            </torque>
+        </engine>
+        <exhaust
+            x="0.72"
+            y="0.263"
+            angle="1.57"
+            />
+    </car>
+    <car
+        name="BTR"
+        path="btr.png"
+        mass="13000"
+        wk="0.5"
+        bk="40000"
+        width="7.65"
+        >
+        <wheel x="0.2" r="0.078"></wheel>
+        <wheel x="0.388" r="0.078"></wheel>
+        <wheel x="0.636" r="0.078"></wheel>
+        <wheel x="0.82" r="0.078"></wheel>
+        <transmisson>
+            <diff value="5"/>
+            <gear value="-6.4"/>
+            <gear value="0"/>
+            <gear value="9.17"/>
+            <gear value="7.17"/>
+            <gear value="5.5"/>
+            <gear value="4.0"/>
+            <gear value="3.5"/>
+        </transmisson>
+        <engine
+            idle="700"
+            inertia="0.06"
+            brk="0.0001"
+            maxRPM="4000"
+            >
+            <torque>
+                <!-- <p x="0" y="0" />
+                 <p x="500" y="400" />-->
+                <p x="1000" y="400" />
+                <p x="1500" y="800" />
+                <p x="2000" y="600" />
+                <p x="3000" y="400" />
+            </torque>
+
+        </engine>
+        <exhaust
+        x="0.16"
+        y="0.22"
+        angle="2.9"
+        />
+    </car>
+</cars>

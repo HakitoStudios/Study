@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_pressed_back">#51ffab40</color>
+
+    <dimen name="button_corner_radius">8dp</dimen>
+    <dimen name="button_stroke_width_norm">1dp</dimen>
+    <dimen name="button_stroke_width_pressed">3dp</dimen>
+</resources>

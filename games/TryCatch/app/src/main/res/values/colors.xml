@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f9fbe7</color>
+    <color name="colorPrimaryDark">#c5e1a5</color>
+    <color name="colorAccent">#ffab40</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="locked_overlay">#aa6e6e6e</color>
+
+    <color name="game_field">#fff3e0</color>
+    <color name="game_empty">#f9fbe7</color>
+    <color name="game_block">#7c7c7c</color>
+    <color name="game_coin">#ffab40</color>
+    <color name="game_toy">#64c262</color>
+    <color name="game_froze">#9800aeef</color>
+    <color name="game_portal_in">#69f0ae</color>
+    <color name="game_portal_out">#ce93d8</color>
+
+</resources>

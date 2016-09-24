@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+
+    android:clickable="false">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pause"
+        android:layout_alignLeft="@+id/pause">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/imageView3"
+            android:src="@drawable/time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="24.42"
+            android:id="@+id/textTime"
+            android:textSize="30sp"
+            android:textColor="@color/colorAccent" />
+    </TableRow>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Gas"
+        android:id="@+id/textView7"
+        android:layout_alignLeft="@+id/gas"
+        android:layout_alignBottom="@+id/gas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Brake"
+        android:id="@+id/textView6"
+        android:layout_alignLeft="@+id/brake"
+        android:layout_alignBottom="@+id/brake" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_toLeftOf="@+id/gas"
+        android:clickable="false"
+        android:layout_margin="10dp"
+        android:id="@+id/geear_container">
+
+        <ImageButton
+            style="@style/BtnStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="^"
+            android:id="@+id/shiftUp"
+            android:layout_above="@+id/shiftDown"
+            android:layout_toLeftOf="@+id/gas"
+            android:layout_toStartOf="@+id/gas"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/up" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView2"
+                android:src="@drawable/transmission" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="N"
+                android:id="@+id/gear"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/gas"
+                android:layout_gravity="center_horizontal"
+                android:gravity="right" />
+        </TableRow>
+
+        <ImageButton
+            style="@style/BtnStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="v"
+            android:id="@+id/shiftDown"
+            android:layout_alignBottom="@+id/gas"
+            android:layout_alignLeft="@+id/shiftUp"
+            android:layout_alignStart="@+id/shiftUp"
+            android:src="@drawable/down" />
+    </LinearLayout>
+
+    <hakito.autosim.views.Pedal
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/clutch"
+        android:max="100"
+        android:indeterminate="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:progress="30"
+        android:layout_margin="10dp" />
+
+    <hakito.autosim.views.Pedal
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/gas"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp" />
+
+    <hakito.autosim.views.Pedal
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/brake"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/clutch"
+        android:layout_toEndOf="@+id/clutch"
+        android:layout_marginLeft="30dp"
+        android:layout_margin="10dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/brake"
+        android:gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <hakito.autosim.views.Indicator
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tachometer"
+                android:layout_weight="1"
+                android:background="@drawable/back"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="RPM"
+                android:id="@+id/textView8"
+                android:layout_centerHorizontal="true"
+                android:textSize="10sp"
+                android:layout_alignParentBottom="false"
+                android:layout_marginBottom="5dp"
+                android:layout_alignBottom="@+id/tachometer" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/fuel"
+                android:scaleType="centerCrop"
+                android:tint="#ff0000" />
+
+            <hakito.autosim.views.VerticalprogressBar
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fuelLevel"
+                android:max="100"
+                android:indeterminate="false"
+                android:progress="70" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <hakito.autosim.views.Indicator
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/speedometer"
+                android:layout_weight="1"
+                android:background="@drawable/back"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="km/h"
+                android:id="@+id/textView9"
+                android:layout_centerHorizontal="true"
+                android:textSize="10sp"
+                android:layout_alignParentBottom="false"
+                android:layout_marginBottom="5dp"
+                android:layout_alignBottom="@+id/speedometer" />
+        </RelativeLayout>
+
+    </TableRow>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="Start"
+        android:id="@+id/starter"
+        style="@style/BtnStyle"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/gas"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorAccent"
+        android:padding="0dp" />
+
+    <TableRow
+        android:layout_toRightOf="@+id/brake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:id="@+id/pause">
+
+        <ImageButton
+            style="@style/BtnStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="New Button"
+            android:id="@+id/buttonPause"
+            android:src="@android:drawable/ic_media_pause" />
+    </TableRow>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/mesage"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Clutch"
+        android:id="@+id/textView5"
+        android:layout_alignBottom="@+id/clutch"
+        android:layout_alignLeft="@+id/clutch"
+        android:layout_alignStart="@+id/clutch" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/light_notifier"
+        android:layout_alignBottom="@+id/geear_container"
+        android:layout_toRightOf="@+id/geear_container"
+        android:layout_marginLeft="-150dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:id="@+id/light_color"
+            android:src="@drawable/light_danger" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="45m"
+            android:id="@+id/light_dist" />
+    </TableRow>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="500m to finish"
+        android:id="@+id/text_to_finish"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/pause"
+        android:layout_toEndOf="@+id/pause"
+        android:layout_margin="5dp" />
+
+
+</RelativeLayout>

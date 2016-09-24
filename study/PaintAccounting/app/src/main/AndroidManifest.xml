@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="gavrysh.oleg.paintaccounting">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.SettingsActivity" />
+        <activity android:name=".Activities.HelpActivity" />
+        <activity
+            android:name=".Activities.Detailed.PaintingActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activities.PhotoActivity" />
+        <activity
+            android:name=".Activities.Detailed.AuthorActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activities.FullPhotoActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".Activities.SelectActivity" />
+        <activity
+            android:name=".Activities.Detailed.BuildingActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activities.Detailed.WorkerActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activities.Detailed.RoomActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activities.FilterActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".Activities.SearchActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".Activities.StringEnterActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".Activities.Detailed.GenreActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activities.Detailed.TechActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activities.Detailed.ServeActivity" />
+        <activity android:name=".Activities.Database"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<levels>
+<level name="Intro">
+    <objects>
+        <object type="trafficLight" x="15"/>
+        <object type="trafficLight" x="150"/>
+        <object type="row" x="5"/>
+        <period x="7" type="row" n="10" d="15"/>
+        <object type="finish" x="200"/>
+    </objects>
+</level>
+    <level name="Basics">
+        <objects>
+            <object type="trafficLight" x="20"/>
+            <object type="trafficLight" x="150"/>
+            <object type="finish" x="300"/>
+        </objects>
+    </level>
+    <level name="Longroad">
+        <objects>
+            <object type="trafficLight" x="30"/>
+            <object type="trafficLight" x="150"/>
+            <object type="trafficLight" x="250"/>
+            <object type="trafficLight" x="450"/>
+            <object type="trafficLight" x="650"/>
+            <object type="trafficLight" x="850"/>
+            <object type="finish" x="1000"/>
+        </objects>
+    </level>
+</levels>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="certain_hint">Поймайте зеленый круг при помощи блоков. Нажмите на экран для размещения блока</string>
+    <string name="extrasense_hint">Зеленой окружностью показан следующий шаг круга</string>
+    <string name="froze_hint">Круг заморожен и не может двигаться!</string>
+    <string name="teleport_hint">Выберите одну из точек и переместите туда круг!</string>
+    <string name="reset">Заново</string>
+    <string name="next">Далее</string>
+    <string name="shop">Магазин</string>
+    <string name="tap_to_play">Нажмите чтобы начать</string>
+    <string name="coinss">%d</string>
+    <string formatted="false" name="coins">%d/%d</string>
+    <string name="extrasense_desc">Предсказывает следующий шаг</string>
+    <string name="extrasense_name">Экстрасенс</string>
+    <string name="froze_desc">Замораживает круг на один шаг</string>
+    <string name="froze_name">Заморозка</string>
+    <string name="steps">%d шагов</string>
+    <string name="teleport_desc">Перемещает круг в указаную позицию</string>
+    <string name="teleport_name">Телепорт</string>
+    <string name="you_need_more_money">Вам нужно больше денег чтобы купить это</string>
+    <string name="you_need_more_stars">Вам нужно на %d звезд больше чтобы открыть</string>
+    <string name="hint_unsufficient_stars">Вам нужно больше звезд чтобы открыть следующий уровень</string>
+    <string name="game_passed">Поздравляем!\nВы прошли игру!</string>
+    <string name="congrat">Поздравляем!</string>
+    <string name="level_failed">Уровень провален :(</string>
+    <string name="level">Уровень %d</string>
+    <string name="available_in_shop">Информация о бонусах и покупка доступны в магазине.</string>
+    <string name="bonuses">Бонусы</string>
+    <string name="there_are_3_bonuses">В игре есть три типа бонусов:</string>
+    <string name="tap_to_activate">Для активации бонуса сначала нажмите на него, а потом следуйте дальнейшим указаниям.</string>
+    <string name="teleport">Телепорт</string>
+    <string name="teleport_is_a_bridge">Телепорт – это воображаемый мост, который может мгновенно переместить кружочек с одной точки в другую.</string>
+    <string name="welcome_to_game">Добро пожаловать в игру!</string>
+    <string name="wel_take_tour">Сейчас мы пройдем небольшое обучение.</string>
+    <string name="press_next">Сейчас просто нажми кнопку «Далее» чтобы начать обучение.</string>
+    <string name="use_btns_to_navigate">Используй боковые кнопки для навигации.</string>
+    <string name="when_you_got">Когда ты все освоишь, нажми «ОК».</string>
+    <string name="frozing">Заморозка</string>
+    <string name="extrasense">Экстрасенс</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Try Catch</string>
+
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_game" translatable="false">GameActivity</string>
+
+    <string name="title_activity_level" translatable="false">LevelActivity</string>
+
+    <string name="title_activity_finish" translatable="false">FinishActivity</string>
+
+
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+    <string name="banner_ad_id" translatable="false">ca-app-pub-2425683094508968/9530084331</string>
+    <string name="interstitial_ad_id" translatable="false">ca-app-pub-2425683094508968/2006817533</string>
+
+</resources>

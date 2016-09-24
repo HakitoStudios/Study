@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+
+
+
+    <group android:id="@+id/pic" android:visible="true">
+        <item android:id="@+id/search"
+            android:title="Search"
+            app:showAsAction="ifRoom"
+            />
+    <item android:id="@+id/action_sort" android:title="Sort"
+        android:orderInCategory="100" app:showAsAction="ifRoom" android:icon="@android:drawable/ic_menu_sort_alphabetically" />
+
+    <item android:id="@+id/action_filter" android:title="Filter"
+        android:orderInCategory="100" app:showAsAction="ifRoom" android:icon="@android:drawable/ic_menu_zoom" />
+    </group>
+    <group android:id="@+id/sql" android:visible="false">
+        <item android:id="@+id/sqlHelp" android:title="Help"></item>
+        <item android:id="@+id/sqlSave" android:title="Save"></item>
+        <item android:id="@+id/sqlPicInfo" android:title="Paintings info"></item>
+        <item android:id="@+id/sqlBuildingInfo" android:title="Buildings info"></item>
+        <item android:id="@+id/sqlAuthorInfo" android:title="Authors info"></item>
+    </group>
+</menu>

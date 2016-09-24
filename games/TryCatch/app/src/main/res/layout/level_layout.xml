@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="148dp" android:layout_height="200dp"
+    android:background="@drawable/level_backgound"
+
+    android:focusableInTouchMode="false">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="7"
+            android:id="@+id/text_levelIndex"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:layout_weight="1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="5x5"
+            android:id="@+id/text_levelSize"
+            android:layout_gravity="center_horizontal"
+            tools:ignore="HardcodedText" />
+
+        <RatingBar
+            android:id="@+id/ratingBar_levelRating"
+            android:numStars="5"
+            android:nestedScrollingEnabled="false"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+            android:indeterminateOnly="false"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lay_locked"
+        android:background="@color/locked_overlay"
+        android:visibility="gone"
+        tools:visibility="invisible"
+        android:clickable="true"  >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="You need 5 stars more to unlock it"
+            android:id="@+id/text_locked"
+            android:layout_centerInParent="true"
+            android:textColor="#f4f4f4"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+</RelativeLayout>

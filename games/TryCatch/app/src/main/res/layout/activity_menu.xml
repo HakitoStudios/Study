@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MenuActivity"
+    android:id="@+id/root"
+    style="@style/LayoutStyle">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <hakito.trycatch.Views.RandomMoveView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView4"
+        android:src="@drawable/menu_back"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tap_to_play"
+        android:id="@+id/textView"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="false"
+        style="@style/textStyle"
+        android:layout_centerInParent="true" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/player_status">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/frame_bonuses"></FrameLayout>
+    </TableRow>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/imageView3"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/player_status" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_shop"
+        android:text="@string/shop"
+        style="@style/ButtonStyle.Minor"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="32dp" />
+
+    <ToggleButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/toggle_sound"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+        android:checked="true"
+        android:background="@drawable/toggle_sound"
+        android:textOn=" "
+        android:textOff=" " />
+</RelativeLayout>
