@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:id="@+id/tableRow_days">
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view"
+                android:text="Mon"
+                style="@style/DayStyle" />
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view2"
+                android:text="Tue"
+                style="@style/DayStyle" />
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view3"
+                android:text="Wed"
+                style="@style/DayStyle" />
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view4"
+                android:text="Thu"
+                style="@style/DayStyle" />
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view5"
+                android:text="Fri"
+                style="@style/DayStyle" />
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view6"
+                android:text="Sat"
+                style="@style/DayStyle" />
+
+            <hakito.graphplayer.DayView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view7"
+                android:text="Sun"
+                style="@style/DayStyle" />
+        </TableRow>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:id="@+id/button_ok" />
+    </LinearLayout>
+
+</RelativeLayout>

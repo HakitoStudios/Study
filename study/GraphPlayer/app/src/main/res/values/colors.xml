@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="text_inactive">#757575</color>
+    <color name="lightGrey">#bcbcbc</color>
+
+    <color name="btn_norm">#5ecccccc</color>
+    <color name="btn_pressed">#b2cccccc</color>
+
+    <color name="graphBack">#f2f2f2</color>
+    <color name="graphBackLines">#b9b9b9</color>
+    <color name="graphLine">#74e75d</color>
+
+    <color name="pointColor">#d2252424</color>
+    <color name="pointColorActive">#bd168100</color>
+</resources>

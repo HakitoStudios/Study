@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <hakito.graphplayer.GraphView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/graph"
+        android:layout_alignParentTop="true" />
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/bMore"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
+        android:background="@null" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/bMore"
+        android:layout_toEndOf="@+id/bMore"
+        android:id="@+id/lMenu"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mirror horizontal"
+            android:id="@+id/bMirrorH"
+            style="@style/GraphButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mirror vertical"
+            android:id="@+id/bMirrorV"
+            style="@style/GraphButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Linear"
+            android:id="@+id/bLinear"
+            style="@style/GraphButton" />
+    </LinearLayout>
+
+</RelativeLayout>

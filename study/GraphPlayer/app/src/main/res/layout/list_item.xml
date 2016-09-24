@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:id="@+id/root">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="00:00"
+        android:id="@+id/textView_time"
+        android:textSize="35dp"
+        android:width="100dp"
+        android:layout_alignTop="@+id/imageView_mode"
+        android:layout_toRightOf="@+id/imageView_mode"
+        android:layout_toEndOf="@+id/imageView_mode" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch_alarm_enabled"
+        android:checked="false"
+        android:layout_below="@+id/imageView_mode"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_lable"
+        android:textColor="@color/lightGrey"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView_time"
+        android:layout_toEndOf="@+id/textView_time"
+        android:singleLine="true"
+        android:text="sflghjdfshgkjhdsf ihdfs ghidfh gdgfh kjsdh fsd "
+        android:layout_marginRight="5dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView_mode"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:tint="#898989" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:id="@+id/tableRow_days"
+        android:layout_below="@+id/textView_time"
+        android:layout_alignParentLeft="true">
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view"
+            android:text="Mon"
+            style="@style/DayStyle.Preview" />
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view2"
+            android:text="Tue"
+            style="@style/DayStyle.Preview" />
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view3"
+            android:text="Wed"
+            style="@style/DayStyle.Preview" />
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view4"
+            android:text="Thu"
+            style="@style/DayStyle.Preview" />
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view5"
+            android:text="Fri"
+            style="@style/DayStyle.Preview" />
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view6"
+            android:text="Sat"
+            style="@style/DayStyle.Preview" />
+
+        <hakito.graphplayer.DayView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view7"
+            android:text="Sun"
+            style="@style/DayStyle.Preview" />
+    </TableRow>
+
+</RelativeLayout>
