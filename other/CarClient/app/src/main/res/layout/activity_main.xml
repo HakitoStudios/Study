@@ -1,63 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="hakito.carclient.MainActivity"
-    >
-
-    <hakito.carclient.views.BigSeekBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekSteer"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:max="180"
-        android:indeterminate="false"
-        android:progress="90"
-        android:layout_toLeftOf="@+id/seekThrottle"
-        android:layout_toStartOf="@+id/seekThrottle"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/tWifiName"
-        android:layout_margin="8dp" />
-
-
-        <hakito.carclient.views.BigSeekBar
-            android:id="@+id/seekThrottle"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:splitTrack="false"
-            android:max="255"
-            android:progress="128"
-            android:indeterminate="false"
-            android:padding="0dp"
-            android:layout_alignParentRight="true"
-            android:layout_margin="8dp" />
-
+    tools:context=".MainActivity"
+    android:orientation="vertical">
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="text"
         android:id="@+id/tDebug"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:singleLine="true" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="wifi"
+        android:singleLine="true"
+        android:text="text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
         android:id="@+id/tWifiName"
-        android:layout_below="@+id/tDebug"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:singleLine="true" />
-</RelativeLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="wifi"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container">
+
+    </FrameLayout>
+</LinearLayout>

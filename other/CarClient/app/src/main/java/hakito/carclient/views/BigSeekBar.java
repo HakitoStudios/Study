@@ -14,16 +14,15 @@ import android.widget.ProgressBar;
  * Created by Oleg on 13.06.2016.
  */
 public class BigSeekBar extends ProgressBar {
-    public interface OnProgressChangedListener
-    {
+    public interface OnProgressChangedListener {
         void changed();
     }
 
-    private static final int size=32, centerSize=8;
+    private static final int size = 32, centerSize = 8;
 
     private static final int backColor = Color.parseColor("#96C8FF"),
-    color = Color.parseColor("#3F4051"),
-    centerColor = Color.RED;
+            color = Color.parseColor("#3F4051"),
+            centerColor = Color.RED;
 
     private OnProgressChangedListener changedListener;
 
@@ -55,8 +54,7 @@ public class BigSeekBar extends ProgressBar {
         this.changedListener = changedListener;
     }
 
-    void init()
-    {
+    void init() {
         centerPaint = new Paint();
         centerPaint.setColor(centerColor);
 
@@ -75,15 +73,12 @@ public class BigSeekBar extends ProgressBar {
 
     }
 
-    void initRect()
-    {
-        if(horizontal)
+    void initRect() {
+        if (horizontal) {
+            rect = new Rect(-size / 2, 0, size / 2, getHeight());
+        } else//vertical
         {
-            rect  = new Rect(-size/2, 0, size/2, getHeight());
-        }
-        else//vertical
-        {
-            rect  = new Rect(0, getHeight() - size/2, getWidth(), getHeight() + size/2 );
+            rect = new Rect(0, getHeight() - size / 2, getWidth(), getHeight() + size / 2);
         }
         setProgress(getProgress());
     }
@@ -91,13 +86,10 @@ public class BigSeekBar extends ProgressBar {
     @Override
     protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(horizontal)
-        {
-            centerRect = new Rect(getWidth()/2-centerSize/2, 0, getWidth()/2+centerSize/2, getHeight());
-        }
-        else
-        {
-            centerRect = new Rect(0, getHeight()/2-centerSize/2, getWidth(), getHeight()/2+centerSize/2);
+        if (horizontal) {
+            centerRect = new Rect(getWidth() / 2 - centerSize / 2, 0, getWidth() / 2 + centerSize / 2, getHeight());
+        } else {
+            centerRect = new Rect(0, getHeight() / 2 - centerSize / 2, getWidth(), getHeight() / 2 + centerSize / 2);
         }
         initRect();
         invalidate();
@@ -107,13 +99,10 @@ public class BigSeekBar extends ProgressBar {
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
         int p;
-        if(horizontal)
-        {
-            p= (int)(getMax() * ((event.getX()) / getWidth()));
-        }
-        else
-        {
-            p= (int)(getMax() * ((getHeight() - event.getY()) / getHeight()));
+        if (horizontal) {
+            p = (int) (getMax() * ((event.getX()) / getWidth()));
+        } else {
+            p = (int) (getMax() * ((getHeight() - event.getY()) / getHeight()));
         }
         setProgress(p);
         //Log.d("qaz", ""+p);
@@ -127,30 +116,26 @@ public class BigSeekBar extends ProgressBar {
 
     @Override
     public synchronized void setProgress(int progress) {
-       // super.setProgress(progress);
+        // super.setProgress(progress);
 
-        if(progress<0)progress=0;
-        if(progress>getMax())progress=getMax();
+        if (progress < 0) progress = 0;
+        if (progress > getMax()) progress = getMax();
         this.progress = progress;
-        float v = (float)progress /getMax();
+        float v = (float) progress / getMax();
 
-        if(rect!=null) {
-            if(horizontal)
-            {
+        if (rect != null) {
+            if (horizontal) {
                 rect.offsetTo((int) (v * getWidth() - size / 2), 0);
-            }
-            else
-            {
+            } else {
                 rect.offsetTo(0, getHeight() - (int) (v * getHeight() + size / 2));
             }
 
         }
         invalidate();
-        if(changedListener!=null)
-        {
+        if (changedListener != null) {
             changedListener.changed();
         }
-        Log.d("qaz", ""+getProgress());
+        Log.d("qaz", "" + getProgress());
     }
 
     @Override

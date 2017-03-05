@@ -1,157 +1,148 @@
 package hakito.carclient;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import hakito.carclient.api.DataSender;
-import hakito.carclient.api.Sender;
 import hakito.carclient.sensors.SensorProvider;
-import hakito.carclient.views.BigSeekBar;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements SensorProvider {
 
-    class AccelerometerProvider implements SensorProvider, SensorEventListener
-    {
-        int steer=90, throttle=128;
+    private static final String PREF_INTERVAL = "interval";
+    private static final String PREF_ADDRESS = "address";
+    private static final String PREF_LEFT = "left";
+    private static final String PREF_RIGHT = "right";
 
-        public AccelerometerProvider() {
-            SensorManager sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-            Sensor s = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            if(s != null)
-            {
-                sensorManager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
-            }
+
+    static class SensorNormalizer implements SensorProvider {
+
+        private SensorProvider provider;
+        private Normalizer steeringNormalizer;
+        private Normalizer throttleNormalizer;
+
+        public SensorNormalizer(SensorProvider provider, Normalizer steeringNormalizer, Normalizer throttleNormalizer) {
+            this.provider = provider;
+            this.steeringNormalizer = steeringNormalizer;
+            this.throttleNormalizer = throttleNormalizer;
         }
 
         @Override
-        public int getThrottle() {
-            return throttle;
+        public double getThrottle() {
+            return throttleNormalizer.normalize(provider.getThrottle());
         }
 
         @Override
-        public int getSteering() {
-            return steer;
-        }
-
-        @Override
-        public void onSensorChanged(SensorEvent event) {
-            Log.d("qaz", Arrays.toString(event.values));
-            float v = event.values[1];
-            v/=9.81;
-            v*=90;
-            v+=90;
-            if(v<0)v=0;
-            else if(v>180)v=180;
-            steer=(int)v;
-            throttle = throt.getProgress();
-
-        }
-
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-        }
-    }
-
-    class SeekProvider implements SensorProvider
-    {
-
-        @Override
-        public int getThrottle() {
-            return throt.getProgress();
-        }
-
-        @Override
-        public int getSteering() {
-            return steer.getProgress();
+        public double getSteering() {
+            return steeringNormalizer.normalize(provider.getSteering());
         }
     }
 
     WifiManager wifiManager;
     TextView wifi;
-    ProgressBar throt, steer;
 
-    @SuppressLint("WrongViewCast")
+    DataSender dataSender;
+    SensorProvider sensorNormalizer;
+
+    TextView debugText;
+
+    BaseSteeringFragment baseSteeringFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        wifi = (TextView)findViewById(R.id.tWifiName);
-        wifiManager = (WifiManager)getSystemService(WIFI_SERVICE);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new SeekBarsFragment())
+                .commit();
+        debugText = (TextView) findViewById(R.id.tDebug);
+        wifi = (TextView) findViewById(R.id.tWifiName);
+        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
                 wifi.post(new Runnable() {
                     @Override
                     public void run() {
-
                         wifi.setText(wifiManager.getConnectionInfo().getSSID());
                     }
                 });
             }
         }, 300, 5000);
 
-        throt = (ProgressBar)findViewById(R.id.seekThrottle);
-        steer =  (ProgressBar)findViewById(R.id.seekSteer);
-        ((BigSeekBar)steer).setHorizontal(true);
-        throt.setOnTouchListener(new SeekResetter(128));
-        steer.setOnTouchListener(new SeekResetter(90));
-        DataSender s = Sender.getInstance();
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        s.setSensorProvider(new SeekProvider());
+        sensorNormalizer = new SensorNormalizer(this,
+                new Normalizer(Integer.valueOf(preferences.getString(PREF_LEFT, "80")),
+                        Integer.valueOf(preferences.getString(PREF_RIGHT, "100"))),
+                new Normalizer(0, 255));
+    }
 
-        s.setDebugView((TextView)findViewById(R.id.tDebug));
+    @Override
+    protected void onResume() {
+        super.onResume();
+        baseSteeringFragment = (BaseSteeringFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_container);
 
-        PrefsHelper prefsHelper = new PrefsHelper(this);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        s.setInterval(prefsHelper.getInterval());
+        final int interval = Integer.valueOf(preferences.getString(PREF_INTERVAL, "100"));
 
-        if(prefsHelper.exists())
-        {
-         s.setAddress(prefsHelper.getAddress());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    dataSender = new DataSender(preferences.getString(PREF_ADDRESS, "192.168.4.1:81"), sensorNormalizer);
+                } catch (final IOException e) {
+                    Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                    //throw new RuntimeException(e);
+                }
+                dataSender.setDebugView(debugText);
+                dataSender.setInterval(interval);
+                dataSender.execute();
+            }
+        }).start();
+    }
+
+    @Override
+    protected void onPause() {
+        if (dataSender != null) {
+            try {
+                dataSender.stop();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        s.execute();
-
+        super.onPause();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.mSettings:
-                Intent intent = new Intent(this, SettingsActivity.class);
+                Intent intent = new Intent(this, PrefsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.mReconnect:
-                Sender.getInstance().setAddress(new PrefsHelper(this).getAddress());
+
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.mReconnect).setEnabled(new PrefsHelper(this).exists());
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -160,5 +151,13 @@ public class MainActivity extends AppCompatActivity  {
         return true;
     }
 
+    @Override
+    public double getThrottle() {
+        return baseSteeringFragment.getThrottle();
+    }
 
+    @Override
+    public double getSteering() {
+        return baseSteeringFragment.getSteer();
+    }
 }

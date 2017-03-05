@@ -58,18 +58,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.mSettings)
-        {
+        if (item.getItemId() == R.id.mSettings) {
             Intent i = new Intent(this, SettingsActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
 
-    void startMaps()
-    {
-
-
+    void startMaps() {
 
 
         class Loader extends AsyncTask<Void, Void, Void> {
@@ -84,8 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         @Override
                         public void run() {
 
-                            for (Point p:res.getPoints())
-                            {
+                            for (Point p : res.getPoints()) {
                                 addPoint(p);
                             }
                         }
@@ -100,19 +95,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         new Loader().execute();
 
     }
-void addPoint(Point p)
-{
-    LatLng sydney = new LatLng(p.getX(), p.getY());
+
+    void addPoint(Point p) {
+        LatLng sydney = new LatLng(p.getX(), p.getY());
 
 
-  Marker m=  mMap.addMarker(new MarkerOptions()
-            .position(sydney)
-            .title(p.getName())
-            .icon(new BitmapDescriptor(BitmapDescriptorFactory.fromResource(R.drawable.wifi_marker).zzzH()))
-    );
+        Marker m = mMap.addMarker(new MarkerOptions()
+                .position(sydney)
+                .title(p.getName())
+                .icon(new BitmapDescriptor(BitmapDescriptorFactory.fromResource(R.drawable.wifi_marker).zzzH()))
+        );
 
-    h.put(m, p);
-}
+        h.put(m, p);
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -128,28 +124,32 @@ void addPoint(Point p)
         mMap.setOnMapLongClickListener(this);
         mMap.setOnInfoWindowClickListener(this);
 
-mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-    @Override
-    public View getInfoWindow(Marker marker) {
-        return null;
-    }
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
 
-    @Override
-    public View getInfoContents(Marker marker) {
-       // return getLayoutInflater().inflate(R.layout.map_info_window, null);
-        return null;
-    }
-});
+            @Override
+            public View getInfoContents(Marker marker) {
+                // return getLayoutInflater().inflate(R.layout.map_info_window, null);
+                return null;
+            }
+        });
 
         startMaps();
     }
-static final int ADD_AP = 2;
+
+    static final int ADD_AP = 2;
+
     @Override
     public void onMapLongClick(LatLng latLng) {
-        Point p = new Point(latLng);
-        AddAPActivity.p = p;
-        Intent i = new Intent(this, AddAPActivity.class);
-        startActivityForResult(i,ADD_AP );
+
+            Point p = new Point(latLng);
+            AddAPActivity.p = p;
+            Intent i = new Intent(this, AddAPActivity.class);
+            startActivityForResult(i, ADD_AP);
+
 
 
     }
@@ -157,11 +157,10 @@ static final int ADD_AP = 2;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==ADD_AP)
-        {
+        if (requestCode == ADD_AP) {
             RestClient.postPoint(AddAPActivity.p);
             addPoint(AddAPActivity.p);
-            AddAPActivity.p=null;
+            AddAPActivity.p = null;
         }
     }
 
