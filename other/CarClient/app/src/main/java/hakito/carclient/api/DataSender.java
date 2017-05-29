@@ -86,6 +86,9 @@ public class DataSender extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         try {
             while (true) {
+                if (socket == null) {
+                    return null;
+                }
                 byte[] command = getCommand();
                 String strCommand = Arrays.toString(command);
                 Log.d("qaz", strCommand);

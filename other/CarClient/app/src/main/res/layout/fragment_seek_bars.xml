@@ -26,8 +26,6 @@
         android:id="@+id/seekThrottle"
         android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
         android:indeterminate="false"
         android:max="100"
         android:padding="0dp"

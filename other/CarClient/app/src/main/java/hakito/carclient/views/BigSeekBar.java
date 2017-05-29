@@ -20,7 +20,7 @@ public class BigSeekBar extends ProgressBar {
 
     private static final int size = 32, centerSize = 8;
 
-    private static final int backColor = Color.parseColor("#96C8FF"),
+    private static final int backColor = Color.parseColor("#E6E6E6"),
             color = Color.parseColor("#3F4051"),
             centerColor = Color.RED;
 

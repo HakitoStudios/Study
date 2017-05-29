@@ -2,15 +2,19 @@ package hakito.carclient;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pierfrancescosoffritti.slidingdrawer.SlidingDrawer;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -18,6 +22,7 @@ import java.util.TimerTask;
 
 import hakito.carclient.api.DataSender;
 import hakito.carclient.sensors.SensorProvider;
+import pl.pawelkleczkowski.customgauge.CustomGauge;
 
 public class MainActivity extends AppCompatActivity implements SensorProvider, DataSender.SensorsCallback {
 
@@ -27,12 +32,18 @@ public class MainActivity extends AppCompatActivity implements SensorProvider, D
     private static final String PREF_RIGHT = "right";
     WifiManager wifiManager;
     TextView wifi;
+    View dragView;
     TextView voltageText;
     DataSender dataSender;
     SensorProvider sensorNormalizer;
     TextView debugText;
     SeekBar ledSeekBar;
     BaseSteeringFragment baseSteeringFragment;
+    SlidingDrawer slidingDrawer;
+    CustomGauge speedometer;
+    TextView speedomterText;
+    double speed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +62,17 @@ public class MainActivity extends AppCompatActivity implements SensorProvider, D
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
-        voltageText = (TextView)findViewById(R.id.voltage_text);
+        speedometer = (CustomGauge) findViewById(R.id.speedometer);
+        speedomterText = (TextView) findViewById(R.id.speedometer_text);
+        dragView = findViewById(R.id.non_slidable_view);
+        slidingDrawer = (SlidingDrawer) findViewById(R.id.sliding_drawer);
+        voltageText = (TextView) findViewById(R.id.voltage_text);
         ledSeekBar = (SeekBar) findViewById(R.id.led_seek_bar);
         debugText = (TextView) findViewById(R.id.tDebug);
         wifi = (TextView) findViewById(R.id.tWifiName);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        slidingDrawer.setDragView(dragView);
+
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -93,6 +110,24 @@ public class MainActivity extends AppCompatActivity implements SensorProvider, D
 
             }
         });
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        speed += 0.01;
+                        showSpeed(Math.abs(Math.sin(speed) * 10));
+                    }
+                });
+            }
+        }, 0, 50);
+    }
+
+    void showSpeed(double kmh) {
+        speedometer.setValue((int) (kmh * 10));
+        speedomterText.setText(String.format("%.1f\nkm/h", kmh));
     }
 
     @Override
@@ -171,7 +206,15 @@ public class MainActivity extends AppCompatActivity implements SensorProvider, D
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                voltageText.setText(String.format("%.2fV", 0.111 * voltage));
+                double value = 0.111 * voltage;
+                voltageText.setText(String.format("%.2fV", value));
+                if (value > 12.3) {
+                    voltageText.setTextColor(Color.GREEN);
+                } else if (value < 11.6) {
+                    voltageText.setTextColor(Color.RED);
+                } else {
+                    voltageText.setTextColor(Color.GRAY);
+                }
             }
         });
     }
