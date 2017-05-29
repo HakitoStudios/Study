@@ -5,25 +5,27 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
+import java.util.Arrays;
 
 import hakito.carclient.sensors.SensorProvider;
 
 public class DataSender extends AsyncTask<Void, Void, Void> {
 
-    private SensorProvider sensorProvider;
-
     TextView debugView;
-
     int interval = 100;
-
+    private SensorProvider sensorProvider;
+    private int led;
     private Socket socket;
-    private OutputStreamWriter stream;
+    private OutputStream outputStream;
+    private InputStream inputStream;
+    private SensorsCallback sensorsCallback;
 
-    public DataSender(String address, SensorProvider sensorProvider) throws IOException {
+    public DataSender(String address, SensorProvider sensorProvider, SensorsCallback sensorsCallback) throws IOException {
         this.sensorProvider = sensorProvider;
+        this.sensorsCallback = sensorsCallback;
         String[] tokens = address.split(":");
         String host = tokens[0];
         int port = Integer.valueOf(tokens[1]);
@@ -32,14 +34,24 @@ public class DataSender extends AsyncTask<Void, Void, Void> {
         socket.setTcpNoDelay(true);
         socket.setTrafficClass(0x10);
         socket.setPerformancePreferences(-1, 1, 1);
+        socket.setSoTimeout(10);
 
-        stream = new OutputStreamWriter(socket.getOutputStream());
+        outputStream = socket.getOutputStream();
+        inputStream = socket.getInputStream();
     }
 
-public void stop() throws IOException {
-    socket.close();
-    socket=null;
-}
+    public int getLed() {
+        return led;
+    }
+
+    public void setLed(int led) {
+        this.led = led;
+    }
+
+    public void stop() throws IOException {
+        socket.close();
+        socket = null;
+    }
 
     private void debug(final String s) {
         if (debugView != null) {
@@ -60,9 +72,13 @@ public void stop() throws IOException {
         this.debugView = debugView;
     }
 
-    private String getCommandString() {
-        String res = String.format("m=%3ds=%3d", (int)sensorProvider.getThrottle(),
-                (int)sensorProvider.getSteering()).replace(' ', '0');
+    private byte[] getCommand() {
+        byte[] res = new byte[5];
+        res[0] = '$';
+        res[1] = (byte) sensorProvider.getThrottle();
+        res[2] = (byte) sensorProvider.getSteering();
+        res[3] = (byte) led;
+        res[4] = (byte) (res[1] + res[2] + res[3]);
         return res;
     }
 
@@ -70,12 +86,18 @@ public void stop() throws IOException {
     protected Void doInBackground(Void... params) {
         try {
             while (true) {
-                String command = getCommandString();
-                Log.d("qaz", command);
-                stream.write(command);
-                stream.flush();
+                byte[] command = getCommand();
+                String strCommand = Arrays.toString(command);
+                Log.d("qaz", strCommand);
+                outputStream.write(command);
+                outputStream.flush();
 
-                debug(command);
+
+                if (inputStream.available() > 0 && inputStream.read() == '$') {
+                    sensorsCallback.onVoltageChanged(inputStream.read());
+                }
+
+                debug(strCommand);
                 try {
                     Thread.sleep(interval);
                 } catch (InterruptedException e) {
@@ -87,5 +109,9 @@ public void stop() throws IOException {
             debug(e.getMessage());
         }
         return null;
+    }
+
+    public interface SensorsCallback {
+        void onVoltageChanged(int voltage);
     }
 }

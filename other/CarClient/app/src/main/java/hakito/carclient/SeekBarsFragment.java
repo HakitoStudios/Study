@@ -24,8 +24,8 @@ public class SeekBarsFragment extends BaseSteeringFragment {
         steeringSeekBar = (BigSeekBar) view.findViewById(R.id.seekSteer);
 
         steeringSeekBar.setHorizontal(true);
-        throttleSeekBar.setOnTouchListener(new SeekResetter(50));
-        steeringSeekBar.setOnTouchListener(new SeekResetter(50));
+        throttleSeekBar.setOnTouchListener(new SeekResetter((int) (MAX_SEEK_BAR_VALUE / 2)));
+        steeringSeekBar.setOnTouchListener(new SeekResetter((int) (MAX_SEEK_BAR_VALUE / 2)));
 
         return view;
     }
